@@ -1,3 +1,12 @@
+# Code editor confiuration
+.vscode/
+
+# MacOS artifacts
+.DS_Store
+
+# Serverless
+.serverless
+
 # Logs
 logs
 *.log
