@@ -24,7 +24,7 @@ functions:
     handler: handler.findPrime
     events:
       - schedule:
-          rate: cron(*/10 * * * ? *)
+          rate: cron(*/60 * * * ? *)
           enabled: true
 
 resources:
