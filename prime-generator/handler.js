@@ -106,6 +106,7 @@ const findPrime = async () => {
   try {
     const prevIteration = await getPrevIteration();
     const thisIteration = prevIteration + 1;
+
     await updatePrevIteration(thisIteration);
     if (isPrime(thisIteration)) {
       const prevSeq = await getPrevSeq();
