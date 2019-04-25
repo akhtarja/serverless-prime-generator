@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-
-import PrimesListContainer from './Components/PrimesList/PrimesListContainer.react';
+import './App.css';
+import PrimesGeneratorAppContainer from './Components/PrimesGeneratorAppContainer.react';
 
 class App extends Component {
   render() {
     return (
-      <PrimesListContainer />
+      <div className="App">
+        <PrimesGeneratorAppContainer />
+      </div>
     )
   }
 }

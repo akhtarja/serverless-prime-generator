@@ -1,23 +1,3 @@
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import PrimesListItem from './PrimesListItem.react';
-
-// class PrimesList extends Component {
-//   render() {
-//     return (
-//       <div>
-//         {this.props.primes.map((prime, index) => <PrimesListItem prime={prime} index={index} />)}
-//       </div>
-//     )
-//   }
-// }
-
-// PrimesList.propTypes = {
-//   primes: PropTypes.array.isRequired
-// };
-
-// export default PrimesList;
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
