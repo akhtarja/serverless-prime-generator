@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import PrimesListHeader from './PrimesListHeader.react';
 import PrimesList from './PrimesList.react';
+
+const styles = theme => ({
+  root: {
+    paddingTop: theme.spacing.unit * 4
+  }
+})
 
 class PrimesListContainer extends Component {
   constructor(props) {
@@ -20,7 +27,7 @@ class PrimesListContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.classes.root}>
         <PrimesListHeader />
         <PrimesList
           primes={this.state.primes}
@@ -30,4 +37,4 @@ class PrimesListContainer extends Component {
   }
 }
 
-export default PrimesListContainer;
+export default withStyles(styles)(PrimesListContainer);

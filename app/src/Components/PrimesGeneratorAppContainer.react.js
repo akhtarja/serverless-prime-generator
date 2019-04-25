@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PrimesListContainer from './PrimesList/PrimesListContainer.react';
+import '../App.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -11,7 +12,7 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <MuiThemeProvider theme={theme}>
           <PrimesListContainer />
         </MuiThemeProvider>
