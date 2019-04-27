@@ -1,19 +1,44 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PrimesListContainer from './PrimesList/PrimesListContainer.react';
-import '../App.css';
 
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
+const theme = {
+  dark: createMuiTheme({
+    typography: {
+      useNextVariants: true,
+    },
+    palette: {
+      type: 'dark',
+    },
+  }),
+  light: createMuiTheme({
+    typography: {
+      useNextVariants: true,
+    },
+    palette: {
+      type: 'light',
+    },
+  })
+};
+
+const styles = ({
+  dark: {
+    backgroundColor: '#000000',
+    minHeight: '100vh'
   },
+  light: {
+    backgroundColor: '#FFFFFF',
+    minHeight: '100vh'
+  }
 });
 
-class App extends Component {
+class PrimesGeneratorAppContainer extends Component {
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider theme={theme}>
+      <div className={this.props.classes.dark}>
+        <MuiThemeProvider theme={theme['dark']}>
           <PrimesListContainer />
         </MuiThemeProvider>
       </div>
@@ -21,4 +46,8 @@ class App extends Component {
   }
 }
 
-export default App;
+PrimesGeneratorAppContainer.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(PrimesGeneratorAppContainer);
