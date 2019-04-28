@@ -20,7 +20,7 @@ class PrimesListContainer extends Component {
         {seq: 3, value: 5, timeStamp: "yesterday"},
         {seq: 4, value: 7, timeStamp: "today"},
         {seq: 5, value: 11, timeStamp: "today"},
-        {seq: 6, value: 13, timeStamp: "today"},
+        {seq: 6, value: 13, timeStamp: "today"}
       ]
     };
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PrimesListContainer from './PrimesList/PrimesListContainer.react';
+import TopBar from './TopBar/TopBar.react';
 
 const theme = {
   dark: createMuiTheme({
@@ -35,14 +36,38 @@ const styles = ({
 });
 
 class PrimesGeneratorAppContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      theme: localStorage.getItem('theme') || 'light'
+    };
+
+    this.changeTheme = this.changeTheme.bind(this);
+  }
+
   render() {
     return (
-      <div className={this.props.classes.dark}>
-        <MuiThemeProvider theme={theme['dark']}>
+      <div className={this.state.theme === 'dark' ? this.props.classes.dark : this.props.classes.light}>
+        <MuiThemeProvider theme={theme[this.state.theme]}>
+          <TopBar
+            theme={this.state.theme}
+            changeTheme={this.changeTheme}
+          />
           <PrimesListContainer />
         </MuiThemeProvider>
       </div>
     )
+  }
+
+  changeTheme() {
+    if (this.state.theme === 'dark') {
+      this.setState({ theme: 'light' });
+      localStorage.setItem('theme', 'light');
+    } else {
+      this.setState({ theme: 'dark' });
+      localStorage.setItem('theme', 'dark');
+    }
   }
 }
 
