@@ -14,6 +14,27 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:Scan
       Resource:
         arn:aws:dynamodb:*:*:table/${self:provider.environment.PRIMES_TABLE}
+
+functions:
+  getAllPrimes:
+    handler: handler.all
+    events:
+      - http:
+          path: allprimes
+          method: get
+  getFirstPrime:
+    handler: handler.first
+    events:
+      - http:
+          path: firstprime
+          method: get
+  getLastPrime:
+    handler: handler.last
+    events:
+      - http:
+          path: lastprime
+          method: get
