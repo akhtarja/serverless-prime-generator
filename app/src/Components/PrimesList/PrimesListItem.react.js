@@ -11,7 +11,7 @@ class PrimesListItem extends Component {
         <TableCell align="center">{this.props.prime.value}</TableCell>
         <TableCell align="center">{this.props.prime.timeStamp}</TableCell>
       </TableRow>
-    )
+    );
   };
 }
 

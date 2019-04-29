@@ -33,7 +33,7 @@ class PrimesListContainer extends Component {
           primes={this.state.primes}
         />
       </div>
-    )
+    );
   }
 }
 

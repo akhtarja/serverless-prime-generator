@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PrimesListContainer from './PrimesList/PrimesListContainer.react';
-import TopBar from './TopBar/TopBar.react';
+import HeaderBar from './HeaderBar/HeaderBar.react';
+import FooterBar from './FooterBar/FooterBar.react';
 
 const theme = {
   dark: createMuiTheme({
@@ -50,14 +51,15 @@ class PrimesGeneratorAppContainer extends Component {
     return (
       <div className={this.state.theme === 'dark' ? this.props.classes.dark : this.props.classes.light}>
         <MuiThemeProvider theme={theme[this.state.theme]}>
-          <TopBar
+          <HeaderBar
             theme={this.state.theme}
             changeTheme={this.changeTheme}
           />
           <PrimesListContainer />
+          <FooterBar />
         </MuiThemeProvider>
       </div>
-    )
+    );
   }
 
   changeTheme() {
