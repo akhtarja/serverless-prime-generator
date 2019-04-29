@@ -1,8 +1,12 @@
 service: prime-viewer
 
+plugins:
+  - ViewerDeploymentPlugin
+
 custom:
   namespace: prime-generator-${self:custom.stage}
   stage: ${opt:stage, self:provider.stage}
+  config_path: "../app/src/config"
 
 provider:
   name: aws
