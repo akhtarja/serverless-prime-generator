@@ -47,8 +47,7 @@ const getItemById = (id) => {
 
   return dynamodb.get(params).promise()
     .then(response => {
-      console.log(response);
-      return ({ response });
+      return ({ response: response.Item });
     })
     .catch(error => {
       dynamodbError(error);
@@ -58,7 +57,12 @@ const getItemById = (id) => {
 const all = async (event, context, callback) => {
   try {
     const primes = await getAllPrimes();
-    return successResponse(primes, callback);
+    const response = primes.primes.map(prime => ({
+      value: prime.value,
+      timestamp: prime.timestamp
+    }));
+
+    return successResponse(response, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }
@@ -67,7 +71,12 @@ const all = async (event, context, callback) => {
 const first = async (event, context, callback) => {
   try {
     const firstPrime = await getItemById('prime1');
-    return successResponse(firstPrime, callback);
+    const response = {
+      value: firstPrime.response.value,
+      timestamp: firstPrime.response.timestamp
+    };
+
+    return successResponse(response, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }
@@ -76,7 +85,12 @@ const first = async (event, context, callback) => {
 const last = async (event, context, callback) => {
   try {
     const lastPrime = await getItemById('prevPrime');
-    return successResponse(lastPrime, callback);
+    const response = {
+      value: lastPrime.response.value,
+      timestamp: lastPrime.response.timestamp
+    };
+
+    return successResponse(response, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }
