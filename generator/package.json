@@ -1,0 +1,22 @@
+{
+  "name": "serverless-prime-generator-generator",
+  "version": "1.0.0",
+  "description": "Generator service for Prime Generator",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhtarja/serverless-prime-generator.git"
+  },
+  "author": "Javed Akhtar",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/akhtarja/serverless-prime-generator/issues"
+  },
+  "homepage": "https://github.com/akhtarja/serverless-prime-generator#readme",
+  "dependencies": {
+    "aws-sdk": "^2.444.0"
+  }
+}
