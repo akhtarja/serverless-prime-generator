@@ -1,0 +1,19 @@
+service: prime-viewer
+
+custom:
+  namespace: prime-generator-${self:custom.stage}
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  profile: prime-generator-${self:custom.stage}
+  environment:
+    PRIMES_TABLE: ${self:custom.namespace}-primes
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+      Resource:
+        arn:aws:dynamodb:*:*:table/${self:provider.environment.PRIMES_TABLE}
