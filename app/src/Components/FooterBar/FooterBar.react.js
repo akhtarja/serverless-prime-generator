@@ -33,7 +33,7 @@ class FooterBar extends Component {
             </Typography>
             <Button
               color='inherit'
-              href='http://www.google.com'
+              href='https://github.com/akhtarja/serverless-prime-generator'
               target='_blank'
             >
               View on GitHub
@@ -49,7 +49,7 @@ class FooterBar extends Component {
       <Link
         href='https://www.javed.dev'
         target='_blank'
-        >
+      >
         Javed Akhtar
       </Link>
     )
