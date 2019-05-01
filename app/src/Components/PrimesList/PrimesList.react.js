@@ -28,7 +28,6 @@ class PrimesList extends Component {
         <Table className={this.props.classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell align="center">id</TableCell>
               <TableCell align="center">Value</TableCell>
               <TableCell align="center">Found</TableCell>
             </TableRow>

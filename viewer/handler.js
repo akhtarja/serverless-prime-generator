@@ -8,6 +8,9 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const successResponse = (response, callback) => {
   callback(null, {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify(response)
   });
 };
@@ -37,23 +40,6 @@ const getAllPrimes = () => {
     });
 };
 
-const getItemById = (id) => {
-  const params = {
-    TableName: process.env.PRIMES_TABLE,
-    Key: {
-      id: id
-    }
-  };
-
-  return dynamodb.get(params).promise()
-    .then(response => {
-      return ({ response: response.Item });
-    })
-    .catch(error => {
-      dynamodbError(error);
-    });
-};
-
 const all = async (event, context, callback) => {
   try {
     const primes = await getAllPrimes();
@@ -68,36 +54,6 @@ const all = async (event, context, callback) => {
   }
 };
 
-const first = async (event, context, callback) => {
-  try {
-    const firstPrime = await getItemById('prime1');
-    const response = {
-      value: firstPrime.response.value,
-      timestamp: firstPrime.response.timestamp
-    };
-
-    return successResponse(response, callback);
-  } catch (error) {
-    return errorResponse(error, callback);
-  }
-};
-
-const last = async (event, context, callback) => {
-  try {
-    const lastPrime = await getItemById('prevPrime');
-    const response = {
-      value: lastPrime.response.value,
-      timestamp: lastPrime.response.timestamp
-    };
-
-    return successResponse(response, callback);
-  } catch (error) {
-    return errorResponse(error, callback);
-  }
-};
-
 module.exports = {
-  all,
-  first,
-  last
+  all
 };

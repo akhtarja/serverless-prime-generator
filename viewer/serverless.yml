@@ -30,15 +30,4 @@ functions:
       - http:
           path: allprimes
           method: get
-  getFirstPrime:
-    handler: handler.first
-    events:
-      - http:
-          path: firstprime
-          method: get
-  getLastPrime:
-    handler: handler.last
-    events:
-      - http:
-          path: lastprime
-          method: get
+          cors: true

@@ -2,38 +2,65 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PrimesListHeader from './PrimesListHeader.react';
 import PrimesList from './PrimesList.react';
+import AllPrimesApi from '../../apis/AllPrimesApi';
+import { sortBy } from 'underscore';
 
 const styles = theme => ({
   root: {
     paddingTop: theme.spacing.unit * 4
   }
-})
+});
 
 class PrimesListContainer extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      primes: [
-        {seq: 1, value: 2, timeStamp: "2 days ago"},
-        {seq: 2, value: 3, timeStamp: "yesterday"},
-        {seq: 3, value: 5, timeStamp: "yesterday"},
-        {seq: 4, value: 7, timeStamp: "today"},
-        {seq: 5, value: 11, timeStamp: "today"},
-        {seq: 6, value: 13, timeStamp: "today"}
-      ]
+      loading: true,
+      error: false
     };
+  }
+
+  componentDidMount() {
+    AllPrimesApi.get()
+      .then((response) => {
+        if (response.error) {
+          this.setState({
+            loading: false,
+            error: true
+          });
+        } else {
+          this.setState({
+            primes: sortBy(response, 'value'),
+            loading: false,
+            error: false
+          });
+        }
+      })
   }
 
   render() {
     return (
       <div className={this.props.classes.root}>
-        <PrimesListHeader />
-        <PrimesList
-          primes={this.state.primes}
-        />
+        {this.renderPrimesList()}
       </div>
     );
+  }
+
+  renderPrimesList() {
+    if (!this.state.loading) {
+      return (
+        <>
+          <PrimesListHeader
+            firstTimestamp={this.state.primes[0].timestamp}
+            lastTimestamp={this.state.primes[this.state.primes.length - 1].timestamp}
+          />
+          <PrimesList
+            primes={this.state.primes}
+          />
+        </>
+      )
+    }
   }
 }
 
