@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PrimesListHeader from './PrimesListHeader.react';
 import PrimesList from './PrimesList.react';
+import InfoBar from '../InfoBar/InfoBar.react';
 import AllPrimesApi from '../../apis/AllPrimesApi';
 import { sortBy } from 'underscore';
 
@@ -48,7 +49,13 @@ class PrimesListContainer extends Component {
   }
 
   renderPrimesList() {
-    if (!this.state.loading) {
+    if (this.state.loading) {
+      return (
+        <InfoBar
+          message={'Loading...'}
+        />
+      );
+    } else if (!this.state.loading && !this.state.error) {
       return (
         <>
           <PrimesListHeader
@@ -59,6 +66,12 @@ class PrimesListContainer extends Component {
             primes={this.state.primes}
           />
         </>
+      );
+    } else if (this.state.error) {
+      return (
+        <InfoBar
+          message={'Something went wrong! Try refreshing the page.'}
+        />
       )
     }
   }
