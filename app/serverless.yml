@@ -7,7 +7,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: us-east-1
-  profile: prime-generator-${self:customer.stage}
+  profile: prime-generator-${self:custom.stage}
   environment:
     APP_BUCKET_NAME: primes.tinyrobot.co
 

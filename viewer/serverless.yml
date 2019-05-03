@@ -15,6 +15,7 @@ provider:
   profile: prime-generator-${self:custom.stage}
   environment:
     PRIMES_TABLE: ${self:custom.namespace}-primes
+    CUSTOM_API_URL: ${env:PRIME_GENERATOR_CUSTOM_ENDPOINT_URL}
   iamRoleStatements:
     - Effect: Allow
       Action:

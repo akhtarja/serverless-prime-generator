@@ -42,7 +42,6 @@ const getPrevSeq = () => {
 };
 
 const isPrime = (number) => {
-  if (number === 1) return false;
   if (number % 2 === 0 && number !== 2) return false;
 
   let start = 2;
@@ -50,7 +49,7 @@ const isPrime = (number) => {
     if (number % start++ < 1) return false;
   }
 
-  return number >= 1;
+  return number > 1;
 };
 
 const updatePrevIteration = (prevIteration) => {
