@@ -1,0 +1,22 @@
+service: prime-app
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  profile: prime-generator-${self:customer.stage}
+  environment:
+    APP_BUCKET_NAME: primes.tinyrobot.co
+
+resources:
+  Resources:
+    AppBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.APP_BUCKET_NAME}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html

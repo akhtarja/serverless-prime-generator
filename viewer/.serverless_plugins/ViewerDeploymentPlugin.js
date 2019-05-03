@@ -22,6 +22,7 @@ class ViewerDeploymentPlugin {
       const params = {
         StackName: `${service}-${custom.stage}`
       };
+      let apiUrl = '';
 
       cloudFormation.describeStackResources(params, function(err, response) {
         if (err) {
@@ -29,7 +30,12 @@ class ViewerDeploymentPlugin {
           return reject(err);
         } else {
           const apiGatewayRestApi = response.StackResources.find(resource => resource.LogicalResourceId === 'ApiGatewayRestApi').PhysicalResourceId;
-          const fileContents = `export default { url: 'https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${stage}' }`;
+          if (stage === 'prod' && provider.environment.CUSTOM_API_URL) {
+            apiUrl = provider.environment.CUSTOM_API_URL;
+          } else {
+            apiUrl = `https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${stage}`;
+          }
+          const fileContents = `export default { url: '${apiUrl}' };`;
           const path = custom.config_path;
 
           if (!fs.existsSync(path)) {
