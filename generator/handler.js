@@ -30,18 +30,19 @@ const getPrevSeq = () => {
     TableName: process.env.PRIMES_TABLE,
     KeyConditionExpression: 'id = :id',
     ExpressionAttributeValues: {
-      ':id': 'prevSeq'
+      ':id': 'prevPrime'
     }
   };
 
   return dynamodb.query(params).promise()
-    .then(response => response.Items[0].value)
+    .then(response => response.Items[0].seq)
     .catch(() => {
       return 0;
     });
 };
 
 const isPrime = (number) => {
+  if (number === 1) return false;
   if (number % 2 === 0 && number !== 2) return false;
 
   let start = 2;
@@ -68,14 +69,15 @@ const updatePrevIteration = (prevIteration) => {
     });
 };
 
-const writePrime = (prime, seq) => {
+const writePrime = (prime, seq, timestamp) => {
   const params = {
     TableName: process.env.PRIMES_TABLE,
     Item: {
       id: `prime${prime}`,
       seq: seq,
-      timestamp: Date.now(),
-      value: prime
+      timestamp: timestamp,
+      value: prime,
+      type: 'prime'
     }
   };
 
@@ -86,12 +88,14 @@ const writePrime = (prime, seq) => {
     });
 };
 
-const updatePrevSeq = (prevSeq) => {
+const updatePrevPrime = (prime, seq, timestamp) => {
   const params = {
     TableName: process.env.PRIMES_TABLE,
     Item: {
-      id: 'prevSeq',
-      value: prevSeq
+      id: 'prevPrime',
+      seq: seq,
+      timestamp: timestamp,
+      value: prime
     }
   };
 
@@ -109,10 +113,11 @@ const findPrime = async () => {
 
     await updatePrevIteration(thisIteration);
     if (isPrime(thisIteration)) {
+      const timestamp = Date.now();
       const prevSeq = await getPrevSeq();
       const thisSeq = prevSeq + 1;
-      await writePrime(thisIteration, thisSeq);
-      await updatePrevSeq(thisSeq);
+      await writePrime(thisIteration, thisSeq, timestamp);
+      await updatePrevPrime(thisIteration, thisSeq, timestamp);
     }
   } catch (error) {
     console.error(error);

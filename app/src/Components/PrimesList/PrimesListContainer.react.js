@@ -32,7 +32,7 @@ class PrimesListContainer extends Component {
           });
         } else {
           this.setState({
-            primes: sortBy(response, 'value'),
+            primes: sortBy(response, 'value').reverse(),
             loading: false,
             error: false
           });
@@ -59,8 +59,8 @@ class PrimesListContainer extends Component {
       return (
         <>
           <PrimesListHeader
-            firstTimestamp={this.state.primes[0].timestamp}
-            lastTimestamp={this.state.primes[this.state.primes.length - 1].timestamp}
+            firstTimestamp={this.state.primes[this.state.primes.length - 1].timestamp}
+            lastTimestamp={this.state.primes[0].timestamp}
           />
           <PrimesList
             primes={this.state.primes}

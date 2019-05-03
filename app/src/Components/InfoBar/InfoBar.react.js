@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
 
 const styles = theme => ({
   root: {
@@ -16,6 +17,7 @@ class InfoBar extends Component {
         <Snackbar className={this.props.classes.root}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           message={this.props.message}
+          TransitionComponent={Fade}
           open={true}
         />
       </div>

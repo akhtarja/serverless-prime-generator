@@ -51,9 +51,9 @@ class HeaderBar extends Component {
 
   themeToggleToolTip() {
     if (this.props.theme === 'dark') {
-      return('Light theme');
+      return('Light mode');
     } else {
-      return('Dark theme');
+      return('Dark mode');
     }
   }
 }
