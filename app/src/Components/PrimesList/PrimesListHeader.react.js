@@ -25,7 +25,7 @@ class PrimesListHeader extends Component {
         </Typography>
         <br />
         <Typography component='p'>
-          The first prime was generated {moment(this.props.firstTimestamp).fromNow()}. The most recent prime was generated {moment(this.props.lastTimestamp).fromNow()}.
+          The first prime was found {moment(this.props.firstTimestamp).fromNow()}. The most recent prime was found {moment(this.props.lastTimestamp).fromNow()}.
         </Typography>
       </Paper>
     );
