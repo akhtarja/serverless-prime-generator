@@ -35,7 +35,12 @@ const getPrevSeq = () => {
   };
 
   return dynamodb.query(params).promise()
-    .then(response => response.Items[0].seq || 0)
+    .then(response => {
+      if (response.Items.length !== 0) {
+        return response.Items[0].seq;
+      }
+      return 0;
+    })
     .catch(() => {
       return 0;
     });
