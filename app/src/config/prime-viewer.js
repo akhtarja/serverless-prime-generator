@@ -1,1 +1,1 @@
-export default { url: 'https://fywtioco5e.execute-api.us-east-1.amazonaws.com/dev' }
+export default { url: 'https://primes-api.tinyrobot.co' };

@@ -55,7 +55,7 @@ class PrimesListContainer extends Component {
           message={'Loading...'}
         />
       );
-    } else if (!this.state.loading && !this.state.error) {
+    } else if (!this.state.loading && !this.state.error && this.state.primes.length !== 0) {
       return (
         <>
           <PrimesListHeader
@@ -67,6 +67,12 @@ class PrimesListContainer extends Component {
           />
         </>
       );
+    } else if (!this.state.loading && !this.state.error && this.state.primes.length === 0) {
+      return (
+        <InfoBar
+          message={'No primes have been generated yet.'}
+        />
+      )
     } else if (this.state.error) {
       return (
         <InfoBar
