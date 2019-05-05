@@ -8,7 +8,8 @@ import { sortBy } from 'underscore';
 
 const styles = theme => ({
   root: {
-    paddingTop: theme.spacing.unit * 4
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 12
   }
 });
 
