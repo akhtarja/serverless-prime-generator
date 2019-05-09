@@ -62,6 +62,7 @@ class PrimesListContainer extends Component {
           <PrimesListHeader
             firstTimestamp={this.state.primes[this.state.primes.length - 1].timestamp}
             lastTimestamp={this.state.primes[0].timestamp}
+            primesCount={this.state.primes.length}
           />
           <PrimesList
             primes={this.state.primes}

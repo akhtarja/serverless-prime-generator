@@ -25,7 +25,7 @@ class PrimesListHeader extends Component {
         </Typography>
         <br />
         <Typography component='p'>
-          The first prime was found {moment(this.props.firstTimestamp).fromNow()}. The most recent prime was found {moment(this.props.lastTimestamp).fromNow()}.
+          A total of {this.props.primesCount} prime numbers have been found so far. The first was found {moment(this.props.firstTimestamp).fromNow()}. The most recent was found {moment(this.props.lastTimestamp).fromNow()}.
         </Typography>
       </Paper>
     );
@@ -35,7 +35,8 @@ class PrimesListHeader extends Component {
 PrimesListHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   firstTimestamp: PropTypes.number.isRequired,
-  lastTimestamp: PropTypes.number.isRequired
+  lastTimestamp: PropTypes.number.isRequired,
+  primesCount: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(PrimesListHeader);
