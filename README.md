@@ -11,7 +11,7 @@ This application uses React and Material UI for the front end, and NodeJS runnin
 ## ESLint Configuration
 This step is only needed if you're doing dev work on the project and want to use ESLint (recommended). From the project's root:
 ```
-npm install
+npm ci
 ```
 
 ## Deploying the Back End
@@ -28,14 +28,14 @@ npm install
 5. Deploy the `generator` service. From the project's root:
 ```
 cd generator
-npm install
+npm ci
 serverless deploy [--stage dev|staging|prod]
 ```
 
 6. Deploy the `viewer` service. From the project's root:
 ```
 cd viewer
-npm install
+npm ci
 serverless deploy [--stage dev|staging|prod]
 ```
 
@@ -43,7 +43,7 @@ serverless deploy [--stage dev|staging|prod]
 Build the application front end. Go back to the project's root and do the following for a **development environment**:
 ```
 cd app
-npm install
+npm ci
 npm run start
 ```
 This will run the application in a local developement server at `localhost:3000`. To create an optimized production build, run `npm run build`. The compiled assets will be created in the `build` folder.
