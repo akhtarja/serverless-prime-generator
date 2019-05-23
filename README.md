@@ -1,5 +1,7 @@
 # Prime Number Generator
 
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=akhtarja/serverless-prime-generator)](https://dependabot.com)
+
 This application is running and publicly available at https://primes.tinyrobot.co/.
 
 Once every hour, this application picks a new number, checks if it's a prime, and records it if so. The front end renders the recorded values in table format.
