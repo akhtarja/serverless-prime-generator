@@ -1,1 +1,0 @@
-export default { url: 'https://primes-api.tinyrobot.co' };
