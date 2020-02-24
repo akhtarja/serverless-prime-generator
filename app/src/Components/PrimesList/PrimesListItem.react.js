@@ -24,7 +24,7 @@ class PrimesListItem extends Component {
         </TableCell>
       </TableRow>
     );
-  };
+  }
 }
 
 PrimesListItem.propTypes = {
