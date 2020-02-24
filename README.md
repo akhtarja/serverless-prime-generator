@@ -1,6 +1,7 @@
 # Prime Number Generator
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=akhtarja/serverless-prime-generator)](https://dependabot.com)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akhtarja_serverless-prime-generator&metric=alert_status)](https://sonarcloud.io/dashboard?id=akhtarja_serverless-prime-generator)
 
 This application is running and publicly available at https://primes.tinyrobot.co/.
 
