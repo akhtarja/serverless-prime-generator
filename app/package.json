@@ -9,7 +9,7 @@
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "3.4.1",
     "underscore": "^1.9.2"
   },
   "scripts": {
