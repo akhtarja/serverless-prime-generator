@@ -2,6 +2,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akhtarja_serverless-prime-generator&metric=alert_status)](https://sonarcloud.io/dashboard?id=akhtarja_serverless-prime-generator)
 [![Test status](https://github.com/akhtarja/serverless-prime-generator/workflows/test/badge.svg)](https://github.com/akhtarja/serverless-prime-generator/actions)
+[![Deploy status](https://github.com/akhtarja/serverless-prime-generator/workflows/deploy/badge.svg)](https://github.com/akhtarja/serverless-prime-generator/actions)
 
 This application is running and publicly available at https://primes.tinyrobot.co/.
 

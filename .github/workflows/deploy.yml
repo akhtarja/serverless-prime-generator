@@ -1,0 +1,53 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy generator
+        run: |
+          cd generator
+          npm install
+          serverless deploy --stage prod
+        env:
+          PRIME_GENERATOR_CUSTOM_ENDPOINT_URL: ${{ secrets.PRIME_GENERATOR_CUSTOM_ENDPOINT_URL }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+      - name: Deploy viewer
+        run: |
+          cd viewer
+          npm install
+          serverless deploy --stage prod
+        env:
+          PRIME_GENERATOR_CUSTOM_ENDPOINT_URL: ${{ secrets.PRIME_GENERATOR_CUSTOM_ENDPOINT_URL }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+      - name: Build app
+        run: |
+          cd app
+          serverless deploy --stage prod
+          npm install
+          npm run build
+          npm run deploy:ci
+        env:
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_PAGER: ''
+          PRIME_GENERATOR_CLOUDFRONT_ID: ${{ secrets.PRIME_GENERATOR_CLOUDFRONT_ID }}
