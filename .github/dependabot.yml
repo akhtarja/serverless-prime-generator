@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/viewer'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'akhtarja'
+  - package-ecosystem: 'npm'
+    directory: '/generator'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'akhtarja'
+  - package-ecosystem: 'npm'
+    directory: '/app'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'akhtarja'
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'akhtarja'
