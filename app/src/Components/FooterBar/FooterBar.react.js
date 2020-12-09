@@ -16,25 +16,34 @@ const styles = {
   },
   appBar: {
     top: 'auto',
-    bottom: 0,
-  },
+    bottom: 0
+  }
 };
 
 class FooterBar extends Component {
   render() {
     return (
       <div className={this.props.classes.root}>
-        <AppBar position='fixed' color='default' className={this.props.classes.appBar}>
+        <AppBar
+          position="fixed"
+          color="default"
+          className={this.props.classes.appBar}
+        >
           <Toolbar>
-            <Typography variant='body2' color='inherit' className={this.props.classes.grow}>
+            <Typography
+              variant="body2"
+              color="inherit"
+              className={this.props.classes.grow}
+            >
               © {this.javedLink()} 2019. All Rights Reserved.
               <br />
-              Powered by {this.reactLink()}, {this.nodeLink()}, and {this.awsLink()}
+              Powered by {this.reactLink()}, {this.nodeLink()}, and{' '}
+              {this.awsLink()}
             </Typography>
             <Button
-              color='inherit'
-              href='https://github.com/akhtarja/serverless-prime-generator'
-              target='_blank'
+              color="inherit"
+              href="https://github.com/akhtarja/serverless-prime-generator"
+              target="_blank"
             >
               View on GitHub
             </Button>
@@ -46,21 +55,15 @@ class FooterBar extends Component {
 
   javedLink() {
     return (
-      <Link
-        href='https://www.javed.dev'
-        target='_blank'
-      >
+      <Link href="https://www.javed.dev" target="_blank">
         Javed Akhtar
       </Link>
-    )
+    );
   }
 
   reactLink() {
     return (
-      <Link
-        href='https://reactjs.org'
-        target='_blank'
-        >
+      <Link href="https://reactjs.org" target="_blank">
         React
       </Link>
     );
@@ -68,10 +71,7 @@ class FooterBar extends Component {
 
   nodeLink() {
     return (
-      <Link
-        href='https://nodejs.org'
-        target='_blank'
-        >
+      <Link href="https://nodejs.org" target="_blank">
         NodeJS
       </Link>
     );
@@ -79,10 +79,7 @@ class FooterBar extends Component {
 
   awsLink() {
     return (
-      <Link
-        href='https://aws.amazon.com'
-        target='_blank'
-        >
+      <Link href="https://aws.amazon.com" target="_blank">
         Amazon Web Services
       </Link>
     );

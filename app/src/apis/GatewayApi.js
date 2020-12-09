@@ -5,11 +5,11 @@ const GatewayApi = {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        if (data.error) return ({ error: data.error })
+        if (data.error) return { error: data.error };
         return data;
       })
-      .catch((error) => {
-        return({ error });
+      .catch(error => {
+        return { error };
       });
   }
 };

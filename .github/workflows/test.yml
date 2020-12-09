@@ -1,0 +1,54 @@
+name: test
+on:
+  push:
+    branches-ignore:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy generator
+        run: |
+          cd generator
+          npm install
+          serverless deploy --stage $GITHUB_RUN_NUMBER
+          serverless remove --stage $GITHUB_RUN_NUMBER
+        env:
+          PRIME_GENERATOR_CUSTOM_ENDPOINT_URL: ${{ secrets.PRIME_GENERATOR_CUSTOM_ENDPOINT_URL }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+      - name: Deploy viewer
+        run: |
+          cd viewer
+          npm install
+          serverless deploy --stage $GITHUB_RUN_NUMBER
+          serverless remove --stage $GITHUB_RUN_NUMBER
+        env:
+          PRIME_GENERATOR_CUSTOM_ENDPOINT_URL: ${{ secrets.PRIME_GENERATOR_CUSTOM_ENDPOINT_URL }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+      - name: Build app
+        run: |
+          cd app
+          npm install
+          npm run build
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install -g eslint
+      - run: npm install
+      - run: eslint . --max-warnings=0

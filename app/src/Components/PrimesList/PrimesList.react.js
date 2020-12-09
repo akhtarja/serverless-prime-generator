@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   table: {
     minWidth: 700
-  },
+  }
 });
 
 class PrimesList extends Component {
@@ -34,10 +34,7 @@ class PrimesList extends Component {
           </TableHead>
           <TableBody>
             {this.props.primes.map((prime, index) => (
-              <PrimesListItem
-                prime={prime}
-                key={index}
-              />
+              <PrimesListItem prime={prime} key={index} />
             ))}
           </TableBody>
         </Table>

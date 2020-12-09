@@ -3,9 +3,7 @@ import PrimesGeneratorAppContainer from './Components/PrimesGeneratorAppContaine
 
 class App extends Component {
   render() {
-    return (
-      <PrimesGeneratorAppContainer />
-    )
+    return <PrimesGeneratorAppContainer />;
   }
 }
 
