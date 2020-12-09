@@ -14,7 +14,8 @@ class InfoBar extends Component {
   render() {
     return (
       <div>
-        <Snackbar className={this.props.classes.root}
+        <Snackbar
+          className={this.props.classes.root}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
           message={this.props.message}
           TransitionComponent={Fade}
@@ -28,6 +29,6 @@ class InfoBar extends Component {
 InfoBar.propTypes = {
   classes: PropTypes.object.isRequired,
   message: PropTypes.string.isRequired
-}
+};
 
 export default withStyles(styles)(InfoBar);

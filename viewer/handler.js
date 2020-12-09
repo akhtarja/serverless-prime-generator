@@ -1,6 +1,8 @@
 /* eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
 /* we want to allow console logging in Lambda functions in order to use AWS CloudWatch */
 
+'use strict';
+
 const AWS = require('aws-sdk');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -22,7 +24,7 @@ const errorResponse = (error, callback) => {
   });
 };
 
-const dynamodbError = (error) => {
+const dynamodbError = error => {
   throw new Error(`dynamodb error: ${JSON.stringify(error)}`);
 };
 
@@ -31,11 +33,13 @@ const getAllPrimes = () => {
     TableName: process.env.PRIMES_TABLE
   };
 
-  return dynamodb.scan(params).promise()
+  return dynamodb
+    .scan(params)
+    .promise()
     .then(response => ({
       primes: response.Items.filter(item => item.type === 'prime')
     }))
-    .catch((error) => {
+    .catch(error => {
       dynamodbError(error);
     });
 };

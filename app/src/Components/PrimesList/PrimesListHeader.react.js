@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import moment from 'moment'
+import moment from 'moment';
 
 const styles = theme => ({
   root: {
@@ -20,12 +20,17 @@ class PrimesListHeader extends Component {
   render() {
     return (
       <Paper className={this.props.classes.root}>
-        <Typography component='p'>
-          As a math person, I have always been fascinated by prime numbers. Once every hour, this application picks a new number, checks if it's a prime, and records it here if so.
+        <Typography component="p">
+          As a math person, I have always been fascinated by prime numbers. Once
+          every hour, this application picks a new number, checks if it's a
+          prime, and records it here if so.
         </Typography>
         <br />
-        <Typography component='p'>
-          A total of {this.props.primesCount} prime numbers have been found so far. The first was found {moment(this.props.firstTimestamp).fromNow()}. The most recent was found {moment(this.props.lastTimestamp).fromNow()}.
+        <Typography component="p">
+          A total of {this.props.primesCount} prime numbers have been found so
+          far. The first was found {moment(this.props.firstTimestamp).fromNow()}
+          . The most recent was found{' '}
+          {moment(this.props.lastTimestamp).fromNow()}.
         </Typography>
       </Paper>
     );

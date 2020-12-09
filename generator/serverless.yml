@@ -6,9 +6,9 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: us-east-1
-  profile: prime-generator-${self:custom.stage}
+  stage: dev
   environment:
     PRIMES_TABLE: ${self:custom.namespace}-primes
   iamRoleStatements:
@@ -16,8 +16,7 @@ provider:
       Action:
         - dynamodb:Query
         - dynamodb:PutItem
-      Resource:
-        arn:aws:dynamodb:*:*:table/${self:provider.environment.PRIMES_TABLE}
+      Resource: arn:aws:dynamodb:*:*:table/${self:provider.environment.PRIMES_TABLE}
 
 functions:
   findPrime:

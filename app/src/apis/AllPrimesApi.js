@@ -3,7 +3,7 @@ import apiUrl from '../config/prime-viewer';
 
 const AllPrimesApi = {
   get() {
-    return GatewayApi.get(`${apiUrl.url}/allprimes`)
+    return GatewayApi.get(`${apiUrl.url}/allprimes`);
   }
 };
 

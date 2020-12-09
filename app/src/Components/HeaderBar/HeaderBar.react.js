@@ -22,16 +22,17 @@ class HeaderBar extends Component {
   render() {
     return (
       <div className={this.props.classes.root}>
-        <AppBar position='sticky' color='default'>
+        <AppBar position="sticky" color="default">
           <Toolbar>
-            <Typography variant='h6' color='inherit' className={this.props.classes.grow}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={this.props.classes.grow}
+            >
               Prime Number Generator
             </Typography>
             <ToolTip title={this.themeToggleToolTip()}>
-              <IconButton
-                onClick={this.props.changeTheme}
-                color='inherit'
-              >
+              <IconButton onClick={this.props.changeTheme} color="inherit">
                 {this.renderThemeIcon()}
               </IconButton>
             </ToolTip>
@@ -43,17 +44,17 @@ class HeaderBar extends Component {
 
   renderThemeIcon() {
     if (this.props.theme === 'dark') {
-      return(<LightTheme />)
+      return <LightTheme />;
     } else {
-      return(<DarkTheme />)
+      return <DarkTheme />;
     }
   }
 
   themeToggleToolTip() {
     if (this.props.theme === 'dark') {
-      return('Light mode');
+      return 'Light mode';
     } else {
-      return('Dark mode');
+      return 'Dark mode';
     }
   }
 }

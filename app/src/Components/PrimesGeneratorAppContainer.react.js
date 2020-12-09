@@ -9,23 +9,23 @@ import FooterBar from './FooterBar/FooterBar.react';
 const theme = {
   dark: createMuiTheme({
     typography: {
-      useNextVariants: true,
+      useNextVariants: true
     },
     palette: {
-      type: 'dark',
-    },
+      type: 'dark'
+    }
   }),
   light: createMuiTheme({
     typography: {
-      useNextVariants: true,
+      useNextVariants: true
     },
     palette: {
-      type: 'light',
-    },
+      type: 'light'
+    }
   })
 };
 
-const styles = ({
+const styles = {
   dark: {
     backgroundColor: '#000000',
     minHeight: '100vh'
@@ -34,7 +34,7 @@ const styles = ({
     backgroundColor: '#FFFFFF',
     minHeight: '100vh'
   }
-});
+};
 
 class PrimesGeneratorAppContainer extends Component {
   constructor(props) {
@@ -49,12 +49,15 @@ class PrimesGeneratorAppContainer extends Component {
 
   render() {
     return (
-      <div className={this.state.theme === 'dark' ? this.props.classes.dark : this.props.classes.light}>
+      <div
+        className={
+          this.state.theme === 'dark'
+            ? this.props.classes.dark
+            : this.props.classes.light
+        }
+      >
         <MuiThemeProvider theme={theme[this.state.theme]}>
-          <HeaderBar
-            theme={this.state.theme}
-            changeTheme={this.changeTheme}
-          />
+          <HeaderBar theme={this.state.theme} changeTheme={this.changeTheme} />
           <PrimesListContainer />
           <FooterBar />
         </MuiThemeProvider>

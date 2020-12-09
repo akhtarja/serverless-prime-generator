@@ -16,7 +16,7 @@ const styles = theme => ({
 class PrimesListContainer extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       loading: true,
       error: false
@@ -24,63 +24,58 @@ class PrimesListContainer extends Component {
   }
 
   componentDidMount() {
-    AllPrimesApi.get()
-      .then((response) => {
-        if (response.error) {
-          this.setState({
-            loading: false,
-            error: true
-          });
-        } else {
-          this.setState({
-            primes: sortBy(response, 'value').reverse(),
-            loading: false,
-            error: false
-          });
-        }
-      })
+    AllPrimesApi.get().then(response => {
+      if (response.error) {
+        this.setState({
+          loading: false,
+          error: true
+        });
+      } else {
+        this.setState({
+          primes: sortBy(response, 'value').reverse(),
+          loading: false,
+          error: false
+        });
+      }
+    });
   }
 
   render() {
     return (
-      <div className={this.props.classes.root}>
-        {this.renderPrimesList()}
-      </div>
+      <div className={this.props.classes.root}>{this.renderPrimesList()}</div>
     );
   }
 
   renderPrimesList() {
     if (this.state.loading) {
-      return (
-        <InfoBar
-          message={'Loading...'}
-        />
-      );
-    } else if (!this.state.loading && !this.state.error && this.state.primes.length !== 0) {
+      return <InfoBar message={'Loading...'} />;
+    } else if (
+      !this.state.loading &&
+      !this.state.error &&
+      this.state.primes.length !== 0
+    ) {
       return (
         <>
           <PrimesListHeader
-            firstTimestamp={this.state.primes[this.state.primes.length - 1].timestamp}
+            firstTimestamp={
+              this.state.primes[this.state.primes.length - 1].timestamp
+            }
             lastTimestamp={this.state.primes[0].timestamp}
             primesCount={this.state.primes.length}
           />
-          <PrimesList
-            primes={this.state.primes}
-          />
+          <PrimesList primes={this.state.primes} />
         </>
       );
-    } else if (!this.state.loading && !this.state.error && this.state.primes.length === 0) {
-      return (
-        <InfoBar
-          message={'No primes have been generated yet.'}
-        />
-      )
+    } else if (
+      !this.state.loading &&
+      !this.state.error &&
+      this.state.primes.length === 0
+    ) {
+      return <InfoBar message={'No primes have been generated yet.'} />;
     } else if (this.state.error) {
       return (
-        <InfoBar
-          message={'Something went wrong! Try refreshing the page.'}
-        />
-      )
+        <InfoBar message={'Something went wrong! Try refreshing the page.'} />
+      );
     }
   }
 }
