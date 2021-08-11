@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/akhtarja/serverless-prime-generator#readme",
   "dependencies": {
-    "aws-sdk": "^2.954.0"
+    "aws-sdk": "^2.965.0"
   }
 }
